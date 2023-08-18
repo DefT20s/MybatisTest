@@ -18,5 +18,10 @@ public interface EmpMapper {
 
     List<Emp> selectAll();
 
+
     Emp selectOneById(Integer eid);
+
+    /*
+    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
+     */
 }

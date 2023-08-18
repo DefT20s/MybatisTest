@@ -38,16 +38,16 @@ public class AppTest {
 
         UserMapper mapper = sqlSession.getMapper(UserMapper.class); //生成代理实现类
 
-        User user = new User(0, "lpc10", "123456", null);
-
-        mapper.insertUser(user);
-
-        System.out.println(user.getId());
-
-//        sqlSession.commit();
+//        User user = new User(0, "lpc10", "123456", null);
 //
-//        System.out.println(mapper.selectUserById(1));
+//        mapper.insertUser(user);
 //
+//        System.out.println(user.getId());
+
+        sqlSession.commit();
+
+        System.out.println(mapper.selectUserById(1));
+
 //        System.out.println(mapper.selectToMap());
 
 

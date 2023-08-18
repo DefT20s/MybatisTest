@@ -18,12 +18,10 @@ public class Emp {
 
     private Dept dept;
 
-
-    public Emp(Integer eid, String empName, Integer did, Dept dept) {
+    public Emp(Integer eid, String empName, Integer did) {
         this.eid = eid;
         this.empName = empName;
         this.did = did;
-        this.dept = dept;
     }
 
     public Integer getEid() {
