@@ -10,4 +10,12 @@
         <result property="deptName" column="dept_name"/>
     </resultMap>
 
+    <select id="selectByDid" resultType="Dept">
+        SELECT
+        did ,
+        dept_name 
+        FROM `dept`
+        WHERE did = #{did}
+    </select>
+
 </mapper>
