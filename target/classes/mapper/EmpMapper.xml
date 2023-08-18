@@ -9,7 +9,14 @@
         <id property="eid" column="eid"/>
         <result property="empName" column="emp_name"/>
         <result property="did" column="did"/>
-
+<!--        <association property="dept" javaType="Dept">-->
+<!--            <result property="did" column="did"/>-->
+<!--            <result property="deptName" column="dept_name"/>-->
+<!--        </association>-->
+        <association property="dept"
+                     select="mapper.DeptMapper.selectByDid"
+                     column="did">
+        </association>
     </resultMap>
 
 
@@ -20,13 +27,12 @@
 
 
     <select id="selectOneById" resultMap="resultMap">
-        SELECT e.eid ,
+        SELECT  e.eid ,
         e.emp_name ,
         e.did ,
-        d.did ,
         d.dept_name
         FROM `emp` e
-        LEFT JOIN `dept` d
+        INNER JOIN `dept` d
         ON e.did = d.did AND e.eid = #{eid}
     </select>
 

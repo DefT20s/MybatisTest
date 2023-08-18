@@ -1,5 +1,7 @@
 package mapper;
 
+import pojo.Dept;
+
 /**
  * IntelliJ IDEA-2020.1
  *
@@ -9,5 +11,7 @@ package mapper;
  * @Description:
  */
 public interface DeptMapper {
+
+    Dept selectByDid(Integer did);
 
 }

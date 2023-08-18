@@ -7,10 +7,10 @@
     <properties resource="jdbc.properties"/>
 
     <!--全局配置-->
-<!--    <settings>-->
-<!--        &lt;!&ndash;下划线转驼峰&ndash;&gt;-->
-<!--        <setting name="mapUnderscoreToCamelCase" value="true"/>-->
-<!--    </settings>-->
+    <settings>
+        <!--下划线转驼峰-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
 
     <!--类型别名-->
     <typeAliases>

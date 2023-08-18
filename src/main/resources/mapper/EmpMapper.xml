@@ -9,9 +9,13 @@
         <id property="eid" column="eid"/>
         <result property="empName" column="emp_name"/>
         <result property="did" column="did"/>
-        <association property="dept" javaType="Dept">
-            <result property="did" column="did"/>
-            <result property="deptName" column="dept_name"/>
+<!--        <association property="dept" javaType="Dept">-->
+<!--            <result property="did" column="did"/>-->
+<!--            <result property="deptName" column="dept_name"/>-->
+<!--        </association>-->
+        <association property="dept"
+                     select="mapper.DeptMapper.selectByDid"
+                     column="did">
         </association>
     </resultMap>
 
