@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.UserMapper">
+
+    <!-- 定义结果映射 -->
+    <resultMap id="userResultMap" type="User">
+        <id column="id" property="id" />
+        <result column="userName" property="userName" />
+        <result column="password" property="password" />
+        <result column="time" property="time" />
+    </resultMap>
+
+    <!-- SELECT 查询 -->
+    <select id="selectUserById" resultType="User">
+        SELECT id, userName, password, time
+        FROM `user`
+        WHERE id = #{id}
+    </select>
+
+    <!-- INSERT 查询 -->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="User">
+        INSERT INTO `user` (userName, password)
+        VALUES (#{userName}, #{password})
+    </insert>
+
+    <select id="selectToMap" resultType="map">
+        select * from `user`
+    </select>
+
+
+
+<!--    &lt;!&ndash; UPDATE 查询 &ndash;&gt;-->
+<!--    <update id="updateUser" parameterType="com.example.model.User">-->
+<!--        UPDATE users-->
+<!--        SET userName = #{userName}, password = #{password}, time = #{time}-->
+<!--        WHERE id = #{id}-->
+<!--    </update>-->
+
+<!--    &lt;!&ndash; DELETE 查询 &ndash;&gt;-->
+<!--    <delete id="deleteUserById">-->
+<!--        DELETE FROM users WHERE id = #{id}-->
+<!--    </delete>-->
+</mapper>
