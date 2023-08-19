@@ -24,6 +24,6 @@ public interface EmpMapper {
     List<Emp> selectOneById(Integer did);
 
     /*
-    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
+    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
      */
 }
