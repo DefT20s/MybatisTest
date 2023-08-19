@@ -22,6 +22,6 @@ public interface EmpMapper {
     Emp selectOneById(Integer eid);
 
     /*
-    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
+    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
      */
 }
