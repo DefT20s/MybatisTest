@@ -25,6 +25,5 @@ public interface EmpMapper {
 
     /*
     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
-
      */
 }
