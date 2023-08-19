@@ -16,6 +16,7 @@
         <result property="time" column="time"/>
     </resultMap>
 
+
     <!-- SELECT 查询 -->
     <select id="selectUserById" resultType="User">
         SELECT id, userName, password, time
