@@ -13,13 +13,18 @@
         <!-- 开启延迟加载 -->
         <setting name="lazyLoadingEnabled" value="true"/>
         <!-- 开启懒加载的时候，将forceEagerLoading设置为true会强制加载所有延迟加载的属性 -->
-         <setting name="aggressiveLazyLoading" value="false"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
 
     <!--类型别名-->
     <typeAliases>
         <package name="pojo"/>
     </typeAliases>
+
+    <plugins>
+        <!--分页插件-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
 
 
     <!-- 配置环境 -->

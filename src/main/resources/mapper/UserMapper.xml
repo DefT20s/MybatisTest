@@ -5,12 +5,15 @@
 
 <mapper namespace="mapper.UserMapper">
 
+    <!--开启二级缓存-->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
     <!-- 定义结果映射 -->
     <resultMap id="userResultMap" type="User">
-        <id column="id" property="id" />
-        <result column="userName" property="userName" />
-        <result column="password" property="password" />
-        <result column="time" property="time" />
+        <id column="id" property="id"/>
+        <result property="userName" column="username"/>
+        <result property="password" column="password"/>
+        <result property="time" column="time"/>
     </resultMap>
 
     <!-- SELECT 查询 -->
@@ -31,16 +34,54 @@
     </select>
 
 
+    <!--动态sql-->
 
-<!--    &lt;!&ndash; UPDATE 查询 &ndash;&gt;-->
-<!--    <update id="updateUser" parameterType="com.example.model.User">-->
-<!--        UPDATE users-->
-<!--        SET userName = #{userName}, password = #{password}, time = #{time}-->
-<!--        WHERE id = #{id}-->
-<!--    </update>-->
+    <sql id="userColumns">
+        `id`,`username`,`password`,`time`
+    </sql>
 
-<!--    &lt;!&ndash; DELETE 查询 &ndash;&gt;-->
-<!--    <delete id="deleteUserById">-->
-<!--        DELETE FROM users WHERE id = #{id}-->
-<!--    </delete>-->
+    <select id="selectUserByManyCondition" resultType="User">
+        select * from `user`
+        <where>
+            <if test="userName != null and userName != ''">
+                username = #{userName}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+        </where>
+
+    </select>
+
+
+    <select id="selectUserByChoose" resultType="User">
+        select
+        <include refid="userColumns"/>
+        from `user`
+        <where>
+            <choose>
+                <when test="userName != null and userName != ''">
+                    username = #{userName}
+                </when>
+                <when test="password != null and password != ''">
+                    password = #{password}
+                </when>
+                <otherwise>
+                    id = 2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <delete id="deleteById">
+        delete from `user`
+        <where>
+            id in
+            <foreach collection="ids" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+        </where>
+    </delete>
+
+
 </mapper>

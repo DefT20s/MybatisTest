@@ -18,7 +18,6 @@ public interface EmpMapper {
 
     List<Emp> selectAll();
 
-
     Emp selectEmpAndDeptById(Integer eid);
 
     List<Emp> selectOneById(Integer did);

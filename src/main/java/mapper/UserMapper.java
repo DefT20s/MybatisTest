@@ -2,6 +2,7 @@ package mapper;
 
 
 import org.apache.ibatis.annotations.MapKey;
+import org.apache.ibatis.annotations.Param;
 import pojo.User;
 
 import java.util.List;
@@ -24,5 +25,15 @@ public interface UserMapper {
 
     @MapKey("id")
     Map<String , Object> selectToMap();
+
+    //多条件查询
+    List<User> selectUserByManyCondition(User user);
+
+    //测试 choose、when、otherwise
+    List<User> selectUserByChoose(User user);
+
+    //foreach
+    Integer deleteById(@Param("ids") Integer[] ids);
+
 
 }
