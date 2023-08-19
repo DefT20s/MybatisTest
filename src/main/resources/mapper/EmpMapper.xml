@@ -5,17 +5,18 @@
 
 <mapper namespace="mapper.EmpMapper">
 
-    <resultMap id="resultMap" type="Emp">
+    <resultMap id="empResultMap" type="Emp">
         <id property="eid" column="eid"/>
         <result property="empName" column="emp_name"/>
         <result property="did" column="did"/>
-<!--        <association property="dept" javaType="Dept">-->
-<!--            <result property="did" column="did"/>-->
-<!--            <result property="deptName" column="dept_name"/>-->
-<!--        </association>-->
+        <!--        <association property="dept" javaType="Dept">-->
+        <!--            <result property="did" column="did"/>-->
+        <!--            <result property="deptName" column="dept_name"/>-->
+        <!--        </association>-->
         <association property="dept"
                      select="mapper.DeptMapper.selectByDid"
-                     column="did">
+                     column="did"
+                     fetchType="lazy">
         </association>
     </resultMap>
 
@@ -25,15 +26,26 @@
     </select>
 
 
+<!--    <select id="selectEmpAndDeptById" resultMap="resultMap">-->
+<!--        SELECT  e.eid ,-->
+<!--        e.emp_name ,-->
+<!--        e.did ,-->
+<!--        d.dept_name-->
+<!--        FROM `emp` e-->
+<!--        INNER JOIN `dept` d-->
+<!--        ON e.did = d.did WHERE e.eid = #{eid}-->
+<!--    </select>-->
 
-    <select id="selectOneById" resultMap="resultMap">
-        SELECT  e.eid ,
-        e.emp_name ,
-        e.did ,
-        d.dept_name
-        FROM `emp` e
-        INNER JOIN `dept` d
-        ON e.did = d.did AND e.eid = #{eid}
+<!--    分布查询-->
+    <select id="selectEmpAndDeptById" resultMap="empResultMap">
+        SELECT * FROM `emp`
+        WHERE eid = #{eid}
+    </select>
+
+
+    <select id="selectOneById" resultType="Emp">
+        SELECT * FROM `emp`
+        WHERE did = #{did}
     </select>
 
 

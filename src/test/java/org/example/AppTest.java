@@ -2,6 +2,7 @@ package org.example;
 
 import static org.junit.Assert.assertTrue;
 
+import mapper.DeptMapper;
 import mapper.EmpMapper;
 import mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
@@ -9,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
+import pojo.Dept;
 import pojo.Emp;
 import pojo.User;
 import utils.SqlSessionUtils;
@@ -58,10 +60,14 @@ public class AppTest {
 
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
 
-        EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
+        DeptMapper deptMapper = sqlSession.getMapper(DeptMapper.class);
 
+        EmpMapper empMapper = sqlSession.getMapper(EmpMapper.class);
+
+//        System.out.println(empMapper.selectEmpAndDeptById(2));
 //        mapper.selectAll().forEach(System.out::println);
-        System.out.println(mapper.selectOneById(4));
+//        System.out.println(mapper.selectOneById(4).getDept().getDeptName());
+        System.out.println(deptMapper.selectDeptAndEmp(1));
 
 
     }

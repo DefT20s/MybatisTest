@@ -8,13 +8,37 @@
     <resultMap id="deptResultMap" type="Dept">
         <id property="did" column="did"/>
         <result property="deptName" column="dept_name"/>
+<!--        <collection property="emps" ofType="Emp">-->
+<!--            <id property="eid" column="eid"/>-->
+<!--            <result property="empName" column="emp_name"/>-->
+<!--        </collection>-->
+<!--        分布查询-->
+        <collection property="emps"
+                    select="mapper.EmpMapper.selectOneById"
+                    column="did"
+                    >
+
+        </collection>
     </resultMap>
 
     <select id="selectByDid" resultType="Dept">
         SELECT
         did ,
-        dept_name 
+        dept_name
         FROM `dept`
+        WHERE did = #{did}
+    </select>
+
+<!--    <select id="selectDeptAndEmp" resultMap="deptResultMap">-->
+<!--        SELECT * FROM `dept` d-->
+<!--        LEFT JOIN `emp` e-->
+<!--        ON d.did = e.did-->
+<!--        WHERE e.did = #{did}-->
+<!--    </select>-->
+
+<!--    分布查询-->
+    <select id="selectDeptAndEmp" resultMap="deptResultMap">
+        SELECT * FROM `dept`
         WHERE did = #{did}
     </select>
 

@@ -19,7 +19,9 @@ public interface EmpMapper {
     List<Emp> selectAll();
 
 
-    Emp selectOneById(Integer eid);
+    Emp selectEmpAndDeptById(Integer eid);
+
+    List<Emp> selectOneById(Integer did);
 
     /*
     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

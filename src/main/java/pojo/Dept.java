@@ -1,5 +1,7 @@
 package pojo;
 
+import java.util.List;
+
 /**
  * IntelliJ IDEA-2020.1
  *
@@ -14,10 +16,17 @@ public class Dept {
 
     private String deptName;
 
-    public Dept(Integer did, String deptName) {
-        this.did = did;
-        this.deptName = deptName;
+    private List<Emp> emps;
+
+    public List<Emp> getEmps() {
+        return emps;
     }
+
+    public void setEmps(List<Emp> emps) {
+        this.emps = emps;
+    }
+
+
 
     public Integer getDid() {
         return did;
@@ -40,6 +49,7 @@ public class Dept {
         return "Dept{" +
                 "did=" + did +
                 ", deptName='" + deptName + '\'' +
+                ", emps=" + emps +
                 '}';
     }
 }

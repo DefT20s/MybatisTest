@@ -14,4 +14,6 @@ public interface DeptMapper {
 
     Dept selectByDid(Integer did);
 
+    Dept selectDeptAndEmp(Integer did);
+
 }
